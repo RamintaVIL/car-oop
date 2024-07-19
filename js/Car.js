@@ -4,55 +4,57 @@ export class Car {
         this.model = modelis;
         this.color = spalva; 
         this.fuelTankCapacity = kuroBakoTalpa; 
+        this.fuelBurn = kuroBakoTalpa;
         this.averageFuelConsumptionPer100Km = vidutinesKuroSanaudos100km;
         this.theEngineTurned = false;
         this.speed = 0;        
     }
     engineTurnedOn() {
-        if (this.theEngineTurned) {
-            return 'Variklis veikiantis';
+        if (this.theEngineTurned !== false) {
+            return 'Variklis jau veikia'; 
         } else {
-            return 'Įjungto varyklio dar kartą įjungti negalima, sugadinsite starterį 👀';  
-           
-        }   
+            return 'Įjungto varyklio dar kartą įjungti negalima, sugadinsite starterį 👀';    
+        }     
     }
+
     engineTurnedOff() {
-        if (!this.isTheEngineTurned) {
-          return 'Nedirbančio varyklio išjungti negalima... Tu gal geriau nebevairuok...';  
+        if (this.theEngineTurned === false) {
+            return 'Nedirbančio varyklio išjungti negalima... Tu gal geriau nebevairuok...'; 
         } else {
             return 'Variklis išjungtas';
-        }  
+        }   
     }
     startDrive() {
         if (this.speed !== 0) {
             return 'Jau važiuojame';
         } else {
-            return (this.averageFuelConsumptionPer100Km * 2);
+            let fuelUsed = this.averageFuelConsumptionPer100Km * 2
+            return (fuelUsed) + 'l';
         }
     }
     drive() {
-        if (this.fuelLevel <= 0){
+        if (this.fuelLevel < 0){
             return 'Įpilkite degalų';
         } else {
             return 'Jūs galite užkurti automobilį ir važiuoti.'
         }
     }
     stop() {
-        if (this.speed <= 0){
+        if (this.speed === 0){
          return 'Automobilis jau sustojo';   
-        } else {
-            this.speed = 0; 
-           return 'Automobilis dar nesustojo'  
+        } else { 
+           return 'Automobilis sustojo'  
         }  
     }
     howMuchFuelIsLeft() {
-        return `Liko kuro: ${this.fuelTankCapacity - this.averageFuelConsumptionPer100Km * 2}`
+        let fuelBurn = this.fuelTankCapacity - this.averageFuelConsumptionPer100Km * 2; 
+        return `Liko kuro: ${fuelBurn}l`
     }
     
-    // howMuchFuelToAdd() {
-    //     return `Reikia uzsipilti: ${} `
-
-    // }
+    howMuchFuelToAdd() {
+        let fuelNeeded = this.fuelTankCapacity - this.fuelBurn;
+        return `Reikia uzsipilti: ${fuelNeeded}l `
+    }
 }
 
 

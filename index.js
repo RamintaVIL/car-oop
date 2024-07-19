@@ -8,7 +8,7 @@ console.log(auto.startDrive());
 console.log(auto.drive());
 console.log(auto.stop());
 console.log(auto.howMuchFuelIsLeft());
-// console.log(auto.howMuchFuelToAdd());
+console.log(auto.howMuchFuelToAdd());
 
 
 
