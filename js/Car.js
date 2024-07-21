@@ -4,11 +4,11 @@ export class Car {
         this.model = modelis;
         this.color = spalva; 
         this.fuelTankCapacity = kuroBakoTalpa; 
-        this.fuelBurn = kuroBakoTalpa;
         this.averageFuelConsumptionPer100Km = vidutinesKuroSanaudos100km;
         this.theEngineTurned = false;
         this.speed = 0;        
     }
+    
     engineTurnedOn() {
         if (this.theEngineTurned !== false) {
             return 'Variklis jau veikia'; 
@@ -28,7 +28,7 @@ export class Car {
         if (this.speed !== 0) {
             return 'Jau važiuojame';
         } else {
-            let fuelUsed = this.averageFuelConsumptionPer100Km * 2
+            let fuelUsed = this.averageFuelConsumptionPer100Km * 2;
             return (fuelUsed) + 'l';
         }
     }
@@ -43,7 +43,7 @@ export class Car {
         if (this.speed === 0){
          return 'Automobilis jau sustojo';   
         } else { 
-           return 'Automobilis sustojo'  
+           return 'Automobilis nesustojo'  
         }  
     }
     howMuchFuelIsLeft() {
@@ -52,8 +52,8 @@ export class Car {
     }
     
     howMuchFuelToAdd() {
-        let fuelNeeded = this.fuelTankCapacity - this.fuelBurn;
-        return `Reikia uzsipilti: ${fuelNeeded}l `
+        let needed = this.fuelTankCapacity - (this.fuelTankCapacity - this.averageFuelConsumptionPer100Km * 2);
+        return `Reikia užsipilti ${needed.toFixed(3)}l.`
     }
 }
 
